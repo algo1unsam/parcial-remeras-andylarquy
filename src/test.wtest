@@ -1,0 +1,27 @@
+import empresa.*
+import remeras.*
+import marcas.*
+import pedidos.*
+import sucursal.*
+
+describe "La mejor empresa del mundo" {
+
+	var tipoRemera1 = new RemeraLisa(talle = 32, color = "gris")
+	
+	var disney = new Marca(derechosDeAutor = 100)
+														//Por lo que entendí este color no debería afectar el precio
+	var tipoRemera2 = new RemeraBordada(talle = 32, color = "blanco", coloresBordado=[gris,negro,azul])
+	
+	var tipoRemera3 = new RemeraSublimada(talle = 34, color = "amarillo", marca = disney, alto = 10, ancho = 10)
+	
+	
+	var caballito = new Sucursal(cantidadRemerasDescuento = 15)
+	var avellaneda = new Sucursal(cantidadRemerasDescuento = 5)
+	
+	var pedido1 = new Pedido(tipo = tipoRemera1, cantidadDeRemeras = 10, sucursal = caballito)
+	
+	var pedido2 = new Pedido(tipo = tipoRemera2, cantidadDeRemeras = 10, sucursal = caballito)
+	
+	//esta va al test empresa.agregarMarca(disney)
+
+}
