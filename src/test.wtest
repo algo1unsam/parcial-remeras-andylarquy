@@ -90,5 +90,11 @@ test "Pedido mas caro"{
 	assert.equals(empresa.pedidoMasCaro(),pedido3)
 }
 
+test "Cantidad de sucursales que tienen todos los talles"{
+	
+	assert.equals(empresa.cantidadSucursalesTodosLosTalles(),0)//Así se usaría este metodo, no me dio tiempo a completarlo
+	
+}
+
 
 }

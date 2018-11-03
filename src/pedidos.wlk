@@ -15,7 +15,7 @@ class Pedido{
 	
 	method descuentoAplicado() = (tipo.costo() * cantidadDeRemeras) * (self.descuento()/100)
 	
-	//Se ingresa un porcentaje
+	//Se ingresa un porcentaje, en el metodo de arriba (linea 16) lo "transfomo" para poder aplicarlo en la linea 13
 	method descuento(){
 		
 		if(self.seHacenAMano()){

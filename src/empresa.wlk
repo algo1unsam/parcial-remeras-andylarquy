@@ -21,7 +21,6 @@ object empresa{
 	
 	method existeConvenioConMarca(marca) = marcasAliadas.contains(marca)
 	
-	
 	method totalFacturadoEmpresa() = pedidos.sum{pedido => pedido.precioDelPedido()}
 	
 	method totalFacturadoSucursal(sucursal)	= self.pedidosDeSucursal(sucursal).sum{pedido => pedido.precioDelPedido()}
@@ -40,7 +39,15 @@ object empresa{
 	
 	method pedidoMasCaro() = pedidos.max{pedido => pedido.precioDelPedido()}
 	
-	//method cantidadSucursalesTodosLosTalles() = 
+	//SUCURSALES CON TODOS LOS TALLES
 	
+	method cantidadSucursalesTodosLosTalles() = self.sucursalesConTodosLosTalles().count() 
 	
+	method sucursalesConTodosLosTalles() = self.todasLasSucursales().filter{sucursal => self.estaSucursalTieneTodosLosTalles(sucursal)}//self.todasLasSucursales().filter{sucursal => sucursal.tieneTodosLosTalles()} 
+	
+	method todasLasSucursales() = pedidos.map{pedido => pedido.sucursal()}.asSet()
+	
+	method estaSucursalTieneTodosLosTalles(sucursal) = self.pedidosDeSucursal(sucursal).all{}
+	//el metodo de arriba debería poder revisar todos los pedidos y decidir si se encuentran todos los talles posibles
+	//no me alcanzó el tiempo a hacerlo, pero debería hacer algo por el estilo
 }
