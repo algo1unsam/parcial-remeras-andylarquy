@@ -4,9 +4,11 @@ class Remera{
 	//Agrego un color que no sea nulo para que pueda contestar al mensaje  method pedidosColor(color) en empresa.wlk
 	const color = ""
 	
+	const property marca = null
+	
 	//porBonus
-	var property precioUno = 80
-	var property precioDos = 100
+	const precioUno = 80
+	const precioDos = 100
 	
 	method esBordada() = false
 	
@@ -34,18 +36,18 @@ class RemeraLisa inherits Remera{
 	//Por las dudas dejo esta aclaración, pregunté durante el parcial y entendí que el color solo "afecta" el precio de las remeras lisas
 		
 		
-	method costo() = self.costoFinal()
+	method costo() = self.costoBase() + self.costoColor() //No le sumo el costo base en este metodo para aplicar el descuento con mas facilidad
 	
 	
-	method costoFinal(){
+	method costoColor(){
 		
 		if( (color == "blanco") || (color == "negro") || (color == "gris") ){
 			
-			return (self.costoBase() + 40)
+			return 0
 			
 		}else{
 			
-			return ((self.costoBase() + 40)*1.10)
+			return (self.costoBase()*1.10)
 			
 		}
 		
@@ -76,7 +78,7 @@ class RemeraSublimada inherits Remera{
 	
 	const alto
 	const ancho
-	const marca = null
+	
 	
 	method costo() = self.costoBase() + self.costoSublimado() + self.derechosDeAutor()
 	
@@ -88,7 +90,7 @@ class RemeraSublimada inherits Remera{
 	
 	method derechosDeAutor(){
 		
-		if (marca == null){
+		if (marca == null){ //para evitar posibles errores
 			
 			return 0
 			

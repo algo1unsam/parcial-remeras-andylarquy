@@ -10,7 +10,7 @@ describe "La mejor empresa del mundo" {
 	
 	var disney = new Marca(derechosDeAutor = 100)
 														//Por lo que entendí este color no debería afectar el precio
-	var tipoRemera2 = new RemeraBordada(talle = 32, color = "blanco", coloresBordado=[gris,negro,azul])
+	var tipoRemera2 = new RemeraBordada(talle = 32, color = "blanco", coloresBordado=["gris","negro","azul"])
 	
 	var tipoRemera3 = new RemeraSublimada(talle = 34, color = "amarillo", marca = disney, alto = 10, ancho = 10)
 	
@@ -20,8 +20,75 @@ describe "La mejor empresa del mundo" {
 	
 	var pedido1 = new Pedido(tipo = tipoRemera1, cantidadDeRemeras = 10, sucursal = caballito)
 	
-	var pedido2 = new Pedido(tipo = tipoRemera2, cantidadDeRemeras = 10, sucursal = caballito)
+	var pedido2 = new Pedido(tipo = tipoRemera2, cantidadDeRemeras = 5, sucursal = avellaneda)
 	
-	//esta va al test empresa.agregarMarca(disney)
+	var pedido3 = new Pedido(tipo = tipoRemera3, cantidadDeRemeras = 15, sucursal = caballito)
+	
+	
+	fixture{
+		empresa.agregarMarca(disney)
+		
+		empresa.agregarPedido(pedido1)
+		empresa.agregarPedido(pedido2)
+		empresa.agregarPedido(pedido3)
+		
+		
+	}
+
+
+test "Precio pedido 1"{
+	
+	assert.equals(pedido1.precioDelPedido(),720)
+	
+}
+
+test "Precio pedido 2"{
+	
+	assert.equals(pedido2.precioDelPedido(),650)
+	
+}
+
+test "Precio pedido 3"{
+	
+	assert.equals(pedido3.precioDelPedido(),2760)
+	
+}
+
+
+test "Total facturado por la empresa"{
+	
+	assert.equals(empresa.totalFacturadoEmpresa(),4130)
+	
+}
+
+test "Total facturado de Avellaneda"{
+	
+	assert.equals(empresa.totalFacturadoSucursal(avellaneda),650)
+	
+}
+
+test "Total facturado de Caballito"{
+	
+	assert.equals(empresa.totalFacturadoSucursal(caballito),3480)
+	
+}
+
+test "Sucursal que mas facturo"{
+	
+	assert.equals(empresa.sucursalQueMasFacturo(),caballito)
+	
+}
+
+test "Pedidos segun color"{
+	
+	assert.equals(empresa.pedidosColor("gris"),[pedido1])
+	
+}
+
+test "Pedido mas caro"{
+	
+	assert.equals(empresa.pedidoMasCaro(),pedido3)
+}
+
 
 }

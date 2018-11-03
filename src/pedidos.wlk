@@ -8,16 +8,17 @@ class Pedido{
 	const property sucursal
 	
 	method esDeSucursal(sucursalParam) = sucursal == sucursalParam
+	method esDeColor(color) = tipo.esDeColor(color)
 	
-	method precioDelPedido() = (tipo.costo() * cantidadDeRemeras) * self.descuentoAplicado() 
+	method precioDelPedido() = (tipo.costo() * cantidadDeRemeras) - self.descuentoAplicado() 
 
 	
-	method descuentoAplicado() = self.descuento() && self.hayConvenio()
+	method descuentoAplicado() = (tipo.costo() * cantidadDeRemeras) * (self.descuento()/100)
 	
 	//Se ingresa un porcentaje
 	method descuento(){
 		
-		if(self.seHacenAMano() and self.cantidadRemerasParaDescuento()){
+		if(self.seHacenAMano()){
 			return 0
 		}
 		
@@ -32,6 +33,6 @@ class Pedido{
 	
 	method seHacenAMano() = tipo.esBordada()
 	method hayConvenio() = empresa.existeConvenioConMarca(tipo.marca())
-	method cantidadRemerasParaDescuento() = cantidadDeRemeras >= sucursal.cantidadRemerasDescuentos()
+	method cantidadRemerasParaDescuento() = cantidadDeRemeras >= sucursal.cantidadRemerasDescuento()
 	
 }
